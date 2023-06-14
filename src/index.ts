@@ -9,7 +9,7 @@ import * as SJC from './crawlers/sjc.crawler'
 		await SJC.login(page)
 		await SJC.logout(page)
 
-		console.log('Done!')
+		console.log('Crawler Done!\n')
 	} catch (error) {
 		console.log('Crawler error:', error)
 	} finally {
