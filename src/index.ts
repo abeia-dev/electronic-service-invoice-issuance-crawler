@@ -1,10 +1,8 @@
-import dotenv from 'dotenv'
+import 'dotenv/config'
 import puppeteer from 'puppeteer'
 import * as urls from './constants/urls.constants'
 import { delay } from './utils/wait'
 import env from './config/environment'
-
-dotenv.config()
 ;(async () => {
 	const browser = await puppeteer.launch({ headless: false })
 	const page = await browser.newPage()
@@ -18,22 +16,27 @@ dotenv.config()
 
 	console.log('Signing in')
 	await page.click('.v-card__actions button')
+
+	console.log('Waiting for a page load')
 	await page.waitForNavigation()
 
 	console.log('Page load: Authenticated')
 	const header = await page.waitForSelector('.profile-picture')
 	const headerTextContent = await header?.evaluate((el) => el.textContent)
 
-	await page.click('a.botaoSairMenu')
+	console.log('Clicking on exit button')
+	await page.click('#navbartop li a.botaoSairMenu')
 
-	await delay(1000)
-
+	console.log('Waiting for confirmation modal')
 	await page.waitForSelector('.swal-modal .swal-footer .swal-button--confirm')
-	await delay(3000)
+
+	console.log('Clicking on confirmation button')
 	await page.click('.swal-button--confirm')
 
-	await page.waitForNavigation()
+	console.log('Waiting for homepage')
 	await page.waitForSelector('[role="document"]')
 
 	await browser.close()
+
+	console.log('Done, browser closed')
 })()
