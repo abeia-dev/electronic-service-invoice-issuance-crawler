@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"scripts": {
 		"dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
-		"build": "tsc"
+		"build": "rm -rf ./dist && tsc"
 	},
 	"dependencies": {
 		"dotenv": "^16.1.4",
