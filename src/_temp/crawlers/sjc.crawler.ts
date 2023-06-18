@@ -1,7 +1,7 @@
 import { Page } from 'puppeteer'
 import * as urls from '../constants/urls.constants'
-import { delay } from '../utils/wait'
-import env from '../config/environment'
+import { delay } from '../../utils/wait'
+import env from '../../config/environment'
 
 export const login = async (page: Page): Promise<void> => {
 	try {
