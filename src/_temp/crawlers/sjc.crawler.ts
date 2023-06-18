@@ -1,7 +1,6 @@
 import { Page } from 'puppeteer'
 import * as urls from '../constants/urls.constants'
 import { delay } from '../../utils/wait'
-import env from '../../config/environment'
 
 export const login = async (page: Page): Promise<void> => {
 	try {
@@ -9,8 +8,8 @@ export const login = async (page: Page): Promise<void> => {
 		await page.setViewport({ width: 1080, height: 1024 })
 
 		console.log('Filling up auth fields')
-		await page.type('#input-56', env.auth_login)
-		await page.type('#input-61', env.auth_password)
+		await page.type('#input-56', 'login')
+		await page.type('#input-61', 'password')
 
 		console.log('Signing in')
 		await page.click('.v-card__actions button')
